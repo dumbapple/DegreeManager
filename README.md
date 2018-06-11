@@ -1,2 +1,2 @@
 # DegreeManager
-Text-based manager for a student at University of British Columbia
+Text-based degree manager/customizer for a student at University of British Columbia
