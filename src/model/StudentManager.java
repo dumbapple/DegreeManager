@@ -16,16 +16,6 @@ public class StudentManager {
     public void changeSpecialization(Specialization specialization) {
         managee.setSpecialization(specialization);
     }
-//
-//    public double getStudentAverage() {
-//        return managee.getTranscript().returnAverage(managee.getCoursesTaken());
-//    }
-
-    public void showTranscript() {
-        for (Course course : managee.getCoursesTaken()) {
-            System.out.println(course.getName() + " " + course.getGrade() + " " + course.getCredit());
-        }
-    }
 
     public void showMainMenu() {
         System.out.println("Enter '1' to see your personal profile");
@@ -36,5 +26,9 @@ public class StudentManager {
     public void showProfileInfo() {
         System.out.println("Name: " + managee.getName());
         System.out.println("UBC ID: " + managee.getStudentID());
+        System.out.println("Year level: " + managee.getYearOfStudy());
+        System.out.println("Specialization: " + managee.getSpecialization().getName());
+        System.out.println("Enter 'back' to return to the main menu");
+        System.out.println("Enter 'quit' to exit the application");
     }
 }

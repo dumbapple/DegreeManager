@@ -9,14 +9,15 @@ public class Course {
     public Course(String name, int credit) {
         this.name = name;
         this.credit = credit;
+
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getCredit() {
         return credit;
-    }
-
-    public void setCredit(int credit) {
-        this.credit = credit;
     }
 
     public double getGrade() {
@@ -25,13 +26,5 @@ public class Course {
 
     public void setGrade(double grade) {
         this.grade = grade;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

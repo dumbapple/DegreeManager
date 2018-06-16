@@ -5,29 +5,38 @@ import java.util.List;
 
 public class Faculty {
     private String name;
-    private int minCreditsForGraduation;
-    private int maxCreditsForGraduation;
     private List<Specialization> specializations;
 
-    public Faculty(String name, int maxCreditsForGraduation) {
+    public Faculty(String name) {
         this.name = name;
-        this.maxCreditsForGraduation = maxCreditsForGraduation;
         specializations = new ArrayList<>();
     }
 
-    public int getMinCreditsForGraduation() {
-        return minCreditsForGraduation;
-    }
-
-    public int getMaxCreditsForGraduation() {
-        return maxCreditsForGraduation;
+    public String getName() {
+        return name;
     }
 
     public List<Specialization> getSpecializations() {
         return specializations;
     }
 
-    public String getName() {
-        return name;
+    public int getMaxCreditsAllowed() {
+        return 180;
+    }
+
+    public int getScienceCredits() {
+        return 72;
+    }
+
+    public int getArtsCredits() {
+        return 12;
+    }
+
+    public int getThirdYearPlusTotalCredits() {
+        return 48;
+    }
+
+    public int getThirdYearPlusScienceCredits() {
+        return 30;
     }
 }

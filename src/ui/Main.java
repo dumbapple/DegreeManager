@@ -24,21 +24,29 @@ public class Main {
         // initializing student and application
         int studentID = Integer.parseInt(inputStudentID);
         int studyYear = Integer.parseInt(inputStudyYear);
-        Specialization specialization = new Specialization(inputSpecialization);
-        specialization.
-        Student thisUser = new Student(inputFullName, specialization, studentID, studyYear);
+        Specialization thisSpecialization = new Specialization(inputSpecialization);
+        Student thisUser = new Student(inputFullName, studentID, studyYear, thisSpecialization);
         StudentManager thisManager = new StudentManager(thisUser);
         ApplicationState thisProgram = new ApplicationState(thisManager);
 
+        // running the application
         thisManager.showMainMenu();
-
         while (thisProgram.isRunning()) {
+            switch (userInput.next()) {
+                case "1": thisManager.showProfileInfo();
+                break;
+
+                case "2": thisManager.
+
+            }
             if (userInput.next().equals("1")) {
                 thisManager.showProfileInfo();
+                if (userInput.next().equals("back")) {
+                    thisManager.showMainMenu();
+                }
             }
 
             if (userInput.next().equals("2")) {
-                thisManager.showTranscript();
             }
 
             if (userInput.next().equals("quit")) {
