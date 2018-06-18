@@ -1,6 +1,8 @@
 package model;
 
-// manages changes and info display for a given student's studies
+import java.util.Scanner;
+
+// Manages changes and information output for a given student's studies
 public class StudentManager {
     private Student managee;
 
@@ -20,7 +22,7 @@ public class StudentManager {
     public void showMainMenu() {
         System.out.println("Enter '1' to see your personal profile");
         System.out.println("Enter '2' to view your transcript");
-        System.out.println("Enter '3' to edit your course registration");
+        System.out.println("Enter '3' to edit ");
         System.out.println("Enter 'quit' to exit the application");
     }
 
@@ -31,11 +33,24 @@ public class StudentManager {
         System.out.println("Specialization: " + managee.getSpecialization().getName());
     }
 
-//    public void enterGrades(List<Course> courses, Scanner scanner) {
-//        for (Course c : courses) {
-//            System.out.println(c.getName() + ": " + scanner.nextDouble());
-//        }
-//    }
+    public Specialization fetchSpecialization(Scanner scanner) {
+        System.out.println("Please enter your specialization as abbreviated on the SSC (eg. BIOL, CHEM, CPSC):");
+        Specialization specialization = new Specialization(scanner.next());
+        return specialization;
+    }
 
+    public int fetchStudyYear(Scanner scanner) {
+        System.out.println("Please enter your study year:");
+        return Integer.parseInt(scanner.next());
+    }
 
+    public int fetchStudentID(Scanner scanner) {
+        System.out.println("Please enter your UBC student number:");
+        return Integer.parseInt(scanner.next());
+    }
+
+    public String fetchName(Scanner scanner) {
+        System.out.println("Welcome to the Degree Manager! Please enter your first and last name:");
+        return scanner.nextLine();
+    }
 }

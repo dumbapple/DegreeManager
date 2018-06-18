@@ -23,11 +23,10 @@ public class Transcript {
 
     public double calculateAverage(List<Course> selectedCourses) {
         double init = 0;
-        double numCoursesSelected = selectedCourses.size();
         for (Course course : selectedCourses) {
             init += course.getGrade();
         }
-        return init / numCoursesSelected;
+        return init / selectedCourses.size();
     }
 
     public void showCoursesTaken() {

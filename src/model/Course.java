@@ -1,6 +1,6 @@
 package model;
 
-// represents a course taken by the student
+// Represents a course taken by the student
 public class Course {
     private String name;
     private int credit;
@@ -9,7 +9,6 @@ public class Course {
     public Course(String name, int credit) {
         this.name = name;
         this.credit = credit;
-
     }
 
     public String getName() {

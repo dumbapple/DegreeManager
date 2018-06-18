@@ -3,32 +3,34 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-// represents a student
+// Represents a student
 public class Student {
-    private String name;
 //    private boolean canGraduate;
+    private String name;
     private int studentID;
     private int yearOfStudy;
     private List<Course> coursesTaken;
     private Specialization specialization;
-//    private Transcript transcript;
+    private Transcript transcript;
 
-    public Student(String name, int studentID, int yearOfStudy, Specialization specialization) {
-//        canGraduate = false;
-        this.name = name;
-        this.studentID = studentID;
-        this.yearOfStudy = yearOfStudy;
+    public Student() {
         coursesTaken = new ArrayList<>();
-        this.specialization = specialization;
-//        Transcript studentTranscript = new Transcript();
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getStudentID() {
         return studentID;
+    }
+
+    public void setStudentID(int studentID) {
+        this.studentID = studentID;
     }
 
     public int getYearOfStudy() {
@@ -53,5 +55,13 @@ public class Student {
 
     public void setSpecialization(Specialization specialization) {
         this.specialization = specialization;
+    }
+
+    public Transcript getTranscript() {
+        return transcript;
+    }
+
+    public void setTranscript(Transcript transcript) {
+        this.transcript = transcript;
     }
 }

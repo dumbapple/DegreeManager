@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-// represents a specialization a student may choose
+// Represents a specialization a student may choose
 public class Specialization {
     private String name;
     private Faculty faculty;

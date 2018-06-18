@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a faculty that determines a student's degree requirements
 public class Faculty {
     private String name;
     private List<Specialization> specializations;
