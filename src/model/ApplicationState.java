@@ -16,6 +16,7 @@ public class ApplicationState {
     }
 
     public void setOver() {
+        System.out.println("Goodbye!");
         isRunning = false;
     }
 

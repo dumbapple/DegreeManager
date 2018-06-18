@@ -21,6 +21,7 @@ public class StudentManager {
         System.out.println("Enter '1' to see your personal profile");
         System.out.println("Enter '2' to view your transcript");
         System.out.println("Enter '3' to edit your course registration");
+        System.out.println("Enter 'quit' to exit the application");
     }
 
     public void showProfileInfo() {
@@ -28,7 +29,13 @@ public class StudentManager {
         System.out.println("UBC ID: " + managee.getStudentID());
         System.out.println("Year level: " + managee.getYearOfStudy());
         System.out.println("Specialization: " + managee.getSpecialization().getName());
-        System.out.println("Enter 'back' to return to the main menu");
-        System.out.println("Enter 'quit' to exit the application");
     }
+
+//    public void enterGrades(List<Course> courses, Scanner scanner) {
+//        for (Course c : courses) {
+//            System.out.println(c.getName() + ": " + scanner.nextDouble());
+//        }
+//    }
+
+
 }

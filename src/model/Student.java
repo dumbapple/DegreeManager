@@ -43,6 +43,10 @@ public class Student {
         return coursesTaken;
     }
 
+    public void addCoursesTaken(List<Course> courseList) {
+        coursesTaken.addAll(courseList);
+    }
+
     public Specialization getSpecialization() {
         return specialization;
     }
