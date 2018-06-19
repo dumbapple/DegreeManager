@@ -5,63 +5,51 @@ import java.util.List;
 
 // Represents a student
 public class Student {
-//    private boolean canGraduate;
     private String name;
-    private int studentID;
-    private int yearOfStudy;
-    private List<Course> coursesTaken;
+    private int schoolID;
+    private int studyYear;
     private Specialization specialization;
+    private StudentManager studentManager;
+    private List<Course> coursesTaken;
     private Transcript transcript;
 
     public Student() {
         coursesTaken = new ArrayList<>();
+        studentManager = new StudentManager(this);
     }
 
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    public int getID() {
+        return schoolID;
     }
-
-    public int getStudentID() {
-        return studentID;
+    public int getStudyYear() {
+        return studyYear;
     }
-
-    public void setStudentID(int studentID) {
-        this.studentID = studentID;
-    }
-
-    public int getYearOfStudy() {
-        return yearOfStudy;
-    }
-
-    public void setYearOfStudy(int yearOfStudy) {
-        this.yearOfStudy = yearOfStudy;
-    }
-
-    public List<Course> getCoursesTaken() {
-        return coursesTaken;
-    }
-
-    public void addCoursesTaken(List<Course> courseList) {
-        coursesTaken.addAll(courseList);
-    }
-
     public Specialization getSpecialization() {
         return specialization;
     }
-
+    public List<Course> getCoursesTaken() {
+        return coursesTaken;
+    }
+    public Transcript getTranscript() {
+        return transcript;
+    }
+    public StudentManager getStudentManager() {
+        return studentManager;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setSchoolID(int schoolID) {
+        this.schoolID = schoolID;
+    }
+    public void setStudyYear(int studyYear) {
+        this.studyYear = studyYear;
+    }
     public void setSpecialization(Specialization specialization) {
         this.specialization = specialization;
     }
 
-    public Transcript getTranscript() {
-        return transcript;
-    }
-
-    public void setTranscript(Transcript transcript) {
-        this.transcript = transcript;
-    }
 }
