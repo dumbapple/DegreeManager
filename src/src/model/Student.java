@@ -2,82 +2,60 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 // Represents a student
 public class Student {
-    //    private boolean canGraduate;
     private String name;
-    private int studentID;
-    private int yearOfStudy;
-    private StudentManager associatedManager;
-    private List<Course> coursesTaken;
+    private int schoolID;
+    private int studyYear;
     private Specialization specialization;
+    private String isHonours;
+    private StudentManager studentManager;
+    private List<Course> coursesTaken;
     private Transcript transcript;
 
     public Student() {
         coursesTaken = new ArrayList<>();
-        associatedManager = new StudentManager(this);
+        studentManager = new StudentManager(this);
     }
-
     public String getName() {
         return name;
     }
-
     public int getID() {
-        return studentID;
+        return schoolID;
     }
-
-
     public int getStudyYear() {
-        return yearOfStudy;
+        return studyYear;
     }
-
     public Specialization getSpecialization() {
         return specialization;
     }
-
+    public String isHonours() {
+        return isHonours;
+    }
+    public void setHonours(String input) {
+        isHonours = input;
+    }
     public List<Course> getCoursesTaken() {
         return coursesTaken;
     }
-
-    public void addCoursesTaken(List<Course> courseList) {
-        coursesTaken.addAll(courseList);
+    public Transcript getTranscript() {
+        return transcript;
     }
-
-    public StudentManager getManager() {
-        return associatedManager;
+    public StudentManager getStudentManager() {
+        return studentManager;
     }
-
-    public void gatherStudentInformation(Scanner sc) {
-        setName(associatedManager.logName(sc));
-        setStudentID(associatedManager.logStudentID(sc));
-        setYearOfStudy(associatedManager.logStudyYear(sc));
-        setSpecialization(associatedManager.logSpecialization(sc));
-    }
-
-    private void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
-
-    private void setStudentID(int studentID) {
-        this.studentID = studentID;
+    public void setSchoolID(int schoolID) {
+        this.schoolID = schoolID;
     }
-
-    private void setYearOfStudy(int yearOfStudy) {
-        this.yearOfStudy = yearOfStudy;
+    public void setStudyYear(int studyYear) {
+        this.studyYear = studyYear;
     }
-
-    private void setSpecialization(Specialization specialization) {
+    public void setSpecialization(Specialization specialization) {
         this.specialization = specialization;
     }
-
-//    public Transcript getTranscript() {
-//        return transcript;
-//    }
-//
-//    public void setTranscript(Transcript transcript) {
-//        this.transcript = transcript;
-//    }
 
 }

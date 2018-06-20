@@ -1,24 +1,23 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 // represents a transcript for a given student
 public class Transcript {
     private Student associatedStudent;
-    private List<Course> courses;
+    private List<Course> coursesListed;
 
     public Transcript(Student associatedStudent) {
         this.associatedStudent = associatedStudent;
-        courses = new ArrayList<>();
+        coursesListed = associatedStudent.getCoursesTaken();
     }
 
     public Student getAssociatedStudent() {
         return associatedStudent;
     }
 
-    public List<Course> getCourses() {
-        return courses;
+    public List<Course> getCoursesListed() {
+        return coursesListed;
     }
 
     public double calculateAverage(List<Course> selectedCourses) {
