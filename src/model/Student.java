@@ -9,6 +9,7 @@ public class Student {
     private int schoolID;
     private int studyYear;
     private Specialization specialization;
+    private boolean isHonours;
     private StudentManager studentManager;
     private List<Course> coursesTaken;
     private Transcript transcript;
@@ -17,7 +18,6 @@ public class Student {
         coursesTaken = new ArrayList<>();
         studentManager = new StudentManager(this);
     }
-
     public String getName() {
         return name;
     }
@@ -29,6 +29,12 @@ public class Student {
     }
     public Specialization getSpecialization() {
         return specialization;
+    }
+    public boolean isHonours() {
+        return isHonours;
+    }
+    public void setHonours(boolean input) {
+        isHonours = input;
     }
     public List<Course> getCoursesTaken() {
         return coursesTaken;

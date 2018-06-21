@@ -1,36 +1,67 @@
 package ui;
 
 import model.*;
+
 import java.util.*;
 
 // Main code that runs application
 public class Main {
     public static void main(String[] args) {
-
-
-        System.out.println("Enroll in some courses!");
-
-
-        // Grabbing user info
+        System.out.println("Welcome to the Degree Manager!");
         Scanner input = new Scanner(System.in);
         Student user = new Student();
         StudentManager userManager = user.getStudentManager();
-        CourseManager courseManager = userManager.getCourseManager();
-        userManager.gatherStudentInformation(input);
-
-        // Running the application
-
+        CourseCatalogue catalogue = userManager.getCourseCatalogue();
+        userManager.registerStudentInformation(input);
         while (userManager.isRunning()) {
             userManager.showMainMenu();
-
             switch (input.next()) {
                 case "1":
                     userManager.showProfileInfo();
                     break;
                 case "2":
+                    if (user.getCoursesTaken().isEmpty()) {
+                        userManager.printEmptyTranscriptMessages();
+                        switch (input.next()) {
+                            case "BIOL":
+                                userManager.displayCourses(catalogue.getBiologyCourses());
+                                System.out.println("Type in a course from this list to log your grade");
+                                System.out.println("Type 'back' to return to previous menu");
+                                String selectedCourse = input.next();
+                                System.out.println(selectedCourse);
 
-                    System.out.println("For the following, ");
+                                for (Course c : catalogue.getBiologyCourses()) {
+                                    if (c.getName().equals(selectedCourse)) {
+                                        user.getCoursesTaken().add(c);
+                                        System.out.println("Enter grade received, rounded to nearest percent:");
+                                        Integer gradeOfChosenCourse = input.nextInt();
+                                        c.setGrade(gradeOfChosenCourse);
+                                        System.out.println(c.getCredit());
+                                    }
+                                }
 
+                                break;
+                            case "CHEM":
+                                userManager.displayCourses(catalogue.getChemistryCourses());
+                                break;
+                            case "CPSC":
+                                userManager.displayCourses(catalogue.getComputerScienceCourses());
+                                break;
+                            case "ENGL":
+                                userManager.displayCourses(catalogue.getEnglishCourses());
+                                break;
+                            case "MATH":
+                                userManager.displayCourses(catalogue.getMathCourses());
+                                break;
+                            case "PHYS":
+                                userManager.displayCourses(catalogue.getPhysicsCourses());
+                                break;
+                            case "STAT":
+                                userManager.displayCourses(catalogue.getStatisticsCourses());
+                                break;
+                        }
+                    }
+                    // do course-related stuff here
                     break;
                 case "3":
                     System.out.println("3!!!");
@@ -39,8 +70,7 @@ public class Main {
                     userManager.setOver();
                     System.exit(0);
             }
-            System.out.println("Enter 'back' to return to the main menu");
-            System.out.println("Enter 'quit' to exit the application");
+            userManager.printMenuChangeMessages();
             switch (input.next()) {
                 case "back":
                     break;
