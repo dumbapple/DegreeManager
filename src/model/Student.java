@@ -21,14 +21,26 @@ public class Student {
     public String getName() {
         return name;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
     public int getID() {
         return schoolID;
+    }
+    public void setSchoolID(int schoolID) {
+        this.schoolID = schoolID;
     }
     public int getStudyYear() {
         return studyYear;
     }
+    public void setStudyYear(int studyYear) {
+        this.studyYear = studyYear;
+    }
     public Specialization getSpecialization() {
         return specialization;
+    }
+    public void setSpecialization(Specialization specialization) {
+        this.specialization = specialization;
     }
     public boolean isHonours() {
         return isHonours;
@@ -36,26 +48,16 @@ public class Student {
     public void setHonours(boolean input) {
         isHonours = input;
     }
+    public StudentManager getStudentManager() {
+        return studentManager;
+    }
     public List<Course> getCoursesTaken() {
         return coursesTaken;
     }
     public Transcript getTranscript() {
         return transcript;
     }
-    public StudentManager getStudentManager() {
-        return studentManager;
+    public void setTranscript(Transcript transcript) {
+        this.transcript = transcript;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setSchoolID(int schoolID) {
-        this.schoolID = schoolID;
-    }
-    public void setStudyYear(int studyYear) {
-        this.studyYear = studyYear;
-    }
-    public void setSpecialization(Specialization specialization) {
-        this.specialization = specialization;
-    }
-
 }

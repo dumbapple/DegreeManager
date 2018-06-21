@@ -11,16 +11,18 @@ public class Course {
         this.credit = credit;
     }
 
-    // getters & setters
     public String getName() {
         return name;
     }
+
     public int getCredit() {
         return credit;
     }
+
     public int getGrade() {
         return grade;
     }
+
     public void setGrade(int grade) {
         this.grade = grade;
     }

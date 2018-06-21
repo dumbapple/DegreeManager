@@ -21,9 +21,16 @@ public class CourseCatalogue {
         mathCourses = new ArrayList<>();
         physCourses = new ArrayList<>();
         statCourses = new ArrayList<>();
-
+        makeBiologyCourses();
+        makeChemistryCourses();
+        makeComputerScienceCourses();
+        makeEnglishCourses();
+        makeMathCourses();
+        makePhysicsCourses();
+        makeStatisticsCourses();
     }
-    public List<Course> getBiologyCourses() {
+
+    private void makeBiologyCourses() {
         Course biol112 = new Course("BIOL 112", 3);
         Course biol121 = new Course("BIOL 121", 3);
         Course biol140 = new Course("BIOL 140", 2);
@@ -33,10 +40,13 @@ public class CourseCatalogue {
         Course biol201 = new Course("BIOL 201", 3);
         Course biol203 = new Course("BIOL 203", 3);
         Collections.addAll(biolCourses, biol112, biol121, biol140,
-                           biol153, biol155, biol200, biol201, biol203);
+                biol153, biol155, biol200, biol201, biol203);
+    }
+    public List<Course> getBiologyCourses() {
         return biolCourses;
     }
-    public List<Course> getChemistryCourses() {
+
+    private void makeChemistryCourses() {
         Course chem121 = new Course("CHEM 121", 4);
         Course chem123 = new Course("CHEM 123", 4);
         Course chem203 = new Course("CHEM 203", 4);
@@ -48,10 +58,13 @@ public class CourseCatalogue {
         Course chem235 = new Course("CHEM 235", 1);
         Course chem245 = new Course("CHEM 245", 1);
         Collections.addAll(chemCourses, chem121, chem123, chem203, chem205,
-                           chem208, chem211, chem213, chem233, chem235, chem245);
+                chem208, chem211, chem213, chem233, chem235, chem245);
+    }
+    public List<Course> getChemistryCourses() {
         return chemCourses;
     }
-    public List<Course> getComputerScienceCourses() {
+
+    private void makeComputerScienceCourses() {
         Course cpsc103 = new Course("CPSC 103", 3);
         Course cpsc110 = new Course("CPSC 110", 4);
         Course cpsc121 = new Course("CPSC 121", 4);
@@ -59,16 +72,22 @@ public class CourseCatalogue {
         Course cpsc213 = new Course("CPSC 213", 4);
         Course cpsc221 = new Course("CPSC 221", 4);
         Collections.addAll(cpscCourses, cpsc110, cpsc121, cpsc210, cpsc213, cpsc221);
+    }
+    public List<Course> getComputerScienceCourses() {
         return cpscCourses;
     }
-    public List<Course> getEnglishCourses() {
+
+    private void makeEnglishCourses() {
         Course engl110 = new Course("ENGL 110", 3);
         Course engl111 = new Course("ENGL 111", 3);
         Course engl112 = new Course("ENGL 112", 3);
         Collections.addAll(englCourses, engl110, engl111, engl112);
+    }
+    public List<Course> getEnglishCourses() {
         return englCourses;
     }
-    public List<Course> getMathCourses() {
+
+    private void makeMathCourses() {
         Course math100 = new Course("MATH 100", 3);
         Course math101 = new Course("MATH 101", 3);
         Course math102 = new Course("MATH 102", 3);
@@ -81,9 +100,12 @@ public class CourseCatalogue {
         Course math221 = new Course("MATH 221", 3);
         Collections.addAll(mathCourses, math100, math101, math102, math103,
                 math104, math105, math180, math200, math220, math221);
+    }
+    public List<Course> getMathCourses() {
         return mathCourses;
     }
-    public List<Course> getPhysicsCourses() {
+
+    private void makePhysicsCourses() {
         Course phys101 = new Course("PHYS 101", 3);
         Course phys107 = new Course("PHYS 107", 3);
         Course phys108 = new Course("PHYS 108", 3);
@@ -92,9 +114,12 @@ public class CourseCatalogue {
         Course phys118 = new Course("PHYS 118", 3);;
         Course phys119 = new Course("PHYS 119", 1);
         Collections.addAll(physCourses, phys101, phys107, phys108, phys109, phys117, phys118, phys119);
+    }
+    public List<Course> getPhysicsCourses() {
         return physCourses;
     }
-    public List<Course> getStatisticsCourses() {
+
+    private void makeStatisticsCourses() {
         Course stat200 = new Course("STAT 200", 3);
         Course stat203 = new Course("STAT 203", 3);
         Course stat251 = new Course("STAT 251", 3);
@@ -103,6 +128,8 @@ public class CourseCatalogue {
         Course stat305 = new Course("STAT 305", 3);
         Course stat306 = new Course("STAT 306", 3);
         Collections.addAll(statCourses, stat200, stat203, stat251, stat300, stat302, stat305, stat306);
+    }
+    public List<Course> getStatisticsCourses() {
         return statCourses;
     }
 }

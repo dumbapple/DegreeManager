@@ -10,56 +10,25 @@ public class Main {
         System.out.println("Welcome to the Degree Manager!");
         Scanner input = new Scanner(System.in);
         Student user = new Student();
-        StudentManager userManager = user.getStudentManager();
-        CourseCatalogue catalogue = userManager.getCourseCatalogue();
-        userManager.registerStudentInformation(input);
-        while (userManager.isRunning()) {
-            userManager.showMainMenu();
+        StudentManager manager = user.getStudentManager();
+        CourseCatalogue catalogue = manager.getCourseCatalogue();
+
+//        System.out.println(catalogue.getBiologyCourses());
+
+        manager.registerStudentInformation(input);
+
+        while (manager.isRunning()) {
+            manager.showMainMenu();
             switch (input.next()) {
                 case "1":
-                    userManager.showProfileInfo();
+                    manager.showProfileInfo();
                     break;
                 case "2":
                     if (user.getCoursesTaken().isEmpty()) {
-                        userManager.printEmptyTranscriptMessages();
-                        switch (input.next()) {
-                            case "BIOL":
-                                userManager.displayCourses(catalogue.getBiologyCourses());
-                                System.out.println("Type in a course from this list to log your grade");
-                                System.out.println("Type 'back' to return to previous menu");
-                                String selectedCourse = input.next();
-                                System.out.println(selectedCourse);
-
-                                for (Course c : catalogue.getBiologyCourses()) {
-                                    if (c.getName().equals(selectedCourse)) {
-                                        user.getCoursesTaken().add(c);
-                                        System.out.println("Enter grade received, rounded to nearest percent:");
-                                        Integer gradeOfChosenCourse = input.nextInt();
-                                        c.setGrade(gradeOfChosenCourse);
-                                        System.out.println(c.getCredit());
-                                    }
-                                }
-
-                                break;
-                            case "CHEM":
-                                userManager.displayCourses(catalogue.getChemistryCourses());
-                                break;
-                            case "CPSC":
-                                userManager.displayCourses(catalogue.getComputerScienceCourses());
-                                break;
-                            case "ENGL":
-                                userManager.displayCourses(catalogue.getEnglishCourses());
-                                break;
-                            case "MATH":
-                                userManager.displayCourses(catalogue.getMathCourses());
-                                break;
-                            case "PHYS":
-                                userManager.displayCourses(catalogue.getPhysicsCourses());
-                                break;
-                            case "STAT":
-                                userManager.displayCourses(catalogue.getStatisticsCourses());
-                                break;
-                        }
+                        manager.printEmptyTranscriptMessages();
+                        manager.registerCourseAndGrade(input);
+                    } else {
+                        System.out.println("Hello");
                     }
                     // do course-related stuff here
                     break;
@@ -67,15 +36,15 @@ public class Main {
                     System.out.println("3!!!");
                     break;
                 case "quit":
-                    userManager.setOver();
+                    manager.setOver();
                     System.exit(0);
             }
-            userManager.printMenuChangeMessages();
+            manager.printMenuSwitchOptions();
             switch (input.next()) {
-                case "back":
-                    break;
+                case "main":
+                    continue;
                 case "quit":
-                    userManager.setOver();
+                    manager.setOver();
                     break;
             }
         }

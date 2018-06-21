@@ -37,20 +37,48 @@ public class StudentManager {
         managee.setHonours(logHonoursStatus(studentInput));
     }
 
-    public void displayCourses(List<Course> coursestoDisplay) {
-        Course placeholder = new Course("", 0);
-        coursestoDisplay.add(0, placeholder);
-        for (int index = 1; index < coursestoDisplay.size(); index++) {
-            System.out.println(index + ". " + coursestoDisplay.get(index).getName());
+    public void registerCourseAndGrade(Scanner studentInput) {
+        boolean runner = true;
+        switch (studentInput.next()) {
+            case "BIOL":
+                studentInput.nextLine();
+                while(runner){
+                    displayCourses(courseCatalogue.getBiologyCourses());
+                    System.out.println("Enter a course from this list that you've taken");
+                    String chosenCourse = studentInput.nextLine();
+                    System.out.println(chosenCourse);
+                    for (Course c : courseCatalogue.getBiologyCourses()) {
+                        if (c.getName().equals(chosenCourse)) {
+                            managee.getCoursesTaken().add(c);
+                            System.out.println("Enter grade received:");
+                            int gradeReceived = studentInput.nextInt();
+                            c.setGrade(gradeReceived);
+                            System.out.println(c.getName() + ": " + c.getGrade() + "%");
+                        }
+                    }
+                    System.out.println("Add more courses? ('yes'/'no')");
+                    if (studentInput.next().equals("no")) {
+                        runner = false;
+                    } else {
+                        studentInput.nextLine();
+                    }
+                }
+        }
+    }
+
+    public void displayCourses(List<Course> coursesToDisplay) {
+        for (Course c : coursesToDisplay) {
+            System.out.println(c.getName());
         }
     }
 
     public void printEmptyTranscriptMessages() {
-        System.out.println("Oh no! It looks like we don't yet have any information about the courses you've taken");
-        System.out.println("You must browse through our course catalogues and log the ones you've taken");
-        System.out.println("View a subject's full course list by entering its abbreviation on the SSC (eg. CHEM, BIOL, CPSC)");
+        System.out.println("It looks like we don't know anything about the courses you've taken");
+        System.out.println("Browse through our course catalogues and log the ones you've taken");
+        System.out.println("View a subject's course list by entering its abbreviation (eg. CHEM, BIOL, CPSC)");
     }
-    public void printMenuChangeMessages() {
+
+    public void printMenuSwitchOptions() {
         System.out.println("Enter 'main' to return to the main menu");
         System.out.println("Enter 'quit' to exit the application");
     }
