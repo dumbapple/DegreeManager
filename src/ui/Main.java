@@ -7,15 +7,14 @@ import java.util.*;
 // Main code that runs application
 public class Main {
     public static void main(String[] args) {
+        // Greeting and object setup
         System.out.println("Welcome to the Degree Manager!");
         Scanner input = new Scanner(System.in);
         Student user = new Student();
         StudentManager manager = user.getStudentManager();
-        CourseCatalogue catalogue = manager.getCourseCatalogue();
 
-//        System.out.println(catalogue.getBiologyCourses());
 
-        manager.registerStudentInformation(input);
+        manager.registerStudentInformation(input); // Asking user for profile info
 
         while (manager.isRunning()) {
             manager.showMainMenu();
@@ -27,10 +26,10 @@ public class Main {
                     if (user.getCoursesTaken().isEmpty()) {
                         manager.printEmptyTranscriptMessages();
                         manager.registerCourseAndGrade(input);
+                        manager.printTranscript();
                     } else {
-                        System.out.println("Hello");
+                        manager.printTranscript();
                     }
-                    // do course-related stuff here
                     break;
                 case "3":
                     System.out.println("3!!!");

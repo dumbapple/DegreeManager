@@ -1,6 +1,6 @@
 package model;
 
-// Represents a course taken by the student; grades will be rounded to nearest whole percent
+// Represents a course taken by the student
 public class Course {
     private String name;
     private int credit;

@@ -37,38 +37,45 @@ public class StudentManager {
         managee.setHonours(logHonoursStatus(studentInput));
     }
 
+
     public void registerCourseAndGrade(Scanner studentInput) {
-        boolean runner = true;
         switch (studentInput.next()) {
             case "BIOL":
+                logCourseAndGrade(studentInput, courseCatalogue.getBiologyCourses());
                 studentInput.nextLine();
-                while(runner){
-                    displayCourses(courseCatalogue.getBiologyCourses());
-                    System.out.println("Enter a course from this list that you've taken");
-                    String chosenCourse = studentInput.nextLine();
-                    System.out.println(chosenCourse);
-                    for (Course c : courseCatalogue.getBiologyCourses()) {
-                        if (c.getName().equals(chosenCourse)) {
-                            managee.getCoursesTaken().add(c);
-                            System.out.println("Enter grade received:");
-                            int gradeReceived = studentInput.nextInt();
-                            c.setGrade(gradeReceived);
-                            System.out.println(c.getName() + ": " + c.getGrade() + "%");
-                        }
-                    }
-                    System.out.println("Add more courses? ('yes'/'no')");
-                    if (studentInput.next().equals("no")) {
-                        runner = false;
-                    } else {
-                        studentInput.nextLine();
-                    }
-                }
+                break;
+            case "CHEM":
+                logCourseAndGrade(studentInput, courseCatalogue.getChemistryCourses());
+                studentInput.nextLine();
+                break;
+            case "CPSC":
+                logCourseAndGrade(studentInput, courseCatalogue.getComputerScienceCourses());
+                studentInput.nextLine();
+                break;
+            case "ENGL":
+                logCourseAndGrade(studentInput, courseCatalogue.getEnglishCourses());
+                studentInput.nextLine();
+                break;
+            case "MATH":
+                logCourseAndGrade(studentInput, courseCatalogue.getMathCourses());
+                studentInput.nextLine();
+                break;
+            case "PHYS":
+                logCourseAndGrade(studentInput, courseCatalogue.getPhysicsCourses());
+                studentInput.nextLine();
+                break;
+            case "STAT":
+                logCourseAndGrade(studentInput, courseCatalogue.getStatisticsCourses());
+                studentInput.nextLine();
+                break;
+            case "done":
+                System.out.println("Thank you for feeding us this info. Here is your transcript:");
+                break;
         }
     }
-
-    public void displayCourses(List<Course> coursesToDisplay) {
-        for (Course c : coursesToDisplay) {
-            System.out.println(c.getName());
+    public void printTranscript() {
+        for (Course c : managee.getCoursesTaken()) {
+            System.out.println("Course: " + c.getName() + "   " + "Grade: " + c.getGrade() + "   " + "Credit: " + c.getCredit() );
         }
     }
 
@@ -77,7 +84,6 @@ public class StudentManager {
         System.out.println("Browse through our course catalogues and log the ones you've taken");
         System.out.println("View a subject's course list by entering its abbreviation (eg. CHEM, BIOL, CPSC)");
     }
-
     public void printMenuSwitchOptions() {
         System.out.println("Enter 'main' to return to the main menu");
         System.out.println("Enter 'quit' to exit the application");
@@ -91,6 +97,40 @@ public class StudentManager {
     public void setOver() {
         System.out.println("Goodbye!");
         isRunning = false;
+    }
+    private void logCourseAndGrade(Scanner studentInput, List<Course> courseList) {
+        boolean canLoopRun = true;
+        studentInput.nextLine();
+        while (canLoopRun) {
+            displayCourses(courseList);
+            System.out.println("Enter a course from this list that you've taken");
+            String chosenCourse = studentInput.nextLine();
+            for (Course c : courseList) {
+                if (c.getName().equals(chosenCourse)) {
+                    managee.getCoursesTaken().add(c);
+                    System.out.println("Enter grade received:");
+                    int gradeReceived = studentInput.nextInt();
+                    c.setGrade(gradeReceived);
+                    System.out.println(c.getName() + ": " + c.getGrade() + "%");
+                }
+            }
+            System.out.println("Add more courses from this subject? ('yes'/'no')");
+            if (studentInput.next().equals("no")) {
+                canLoopRun = false;
+                System.out.println("Enter another subject abbreviation to browse its courses");
+                System.out.println("If finished, enter 'done'");
+                registerCourseAndGrade(studentInput);
+            } else {
+                studentInput.nextLine();
+            }
+        }
+    }
+    private void displayCourses(List<Course> coursesToDisplay) {
+        for (Course c : coursesToDisplay) {
+            if (!managee.getCoursesTaken().contains(c)) {
+                System.out.println(c.getName());
+            }
+        }
     }
     private String logName(Scanner scanner) {
         System.out.println("Please enter your first and last name:");
