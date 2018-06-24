@@ -14,6 +14,7 @@ public class Main {
         Transcript userTranscript = new Transcript(user);
         user.setTranscript(userTranscript);
         StudentManager manager = user.getStudentManager();
+        Faculty scienceFaculty = new Faculty("Science");
         System.out.println("To begin, I'll get you to enter some information about yourself.");
         manager.registerProfileInformation(input);
 
@@ -24,8 +25,6 @@ public class Main {
                     manager.printProfile();
                     break;
                 case "2":
-
-
                     if (user.getCoursesTaken().isEmpty()) {
                         manager.printEmptyTranscriptMessages();
                         manager.generateTranscript(input);
@@ -36,9 +35,13 @@ public class Main {
                 case "3":
                     if (user.getCoursesTaken().isEmpty()) {
                         manager.redirectUser(input);
+                        System.out.println("\n" + "\n" + "\n" + "You may now view your degree progress.");
+                        System.out.println("Enter 'progress' to continue.");
+                        if (input.next().equals("progress")) {
+                            System.out.println("GAY");
+                        }
                     } else {
-                        System.out.println("FUCK");
-                        // TODO: do the other functionality here
+                        manager.displayDegreeProgress(scienceFaculty);
                     }
                     break;
                 case "quit":

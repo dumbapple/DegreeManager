@@ -27,8 +27,8 @@ public class TranscriptTest {
 
     @Test
     public void testCalculateAverage() {
-        Course cpsc110 = new Course("CPSC 110", 4);
-        Course cpsc121 = new Course("CPSC 121", 4);
-        Course cpsc210 = new Course("CPSC 110", 4);
+        Course cpsc110 = new Course("CPSC 110", 4, false);
+        Course cpsc121 = new Course("CPSC 121", 4, false);
+        Course cpsc210 = new Course("CPSC 110", 4, false);
     }
 }

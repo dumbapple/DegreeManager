@@ -42,6 +42,10 @@ public class StudentManager {
         }
     }
 
+    public CourseCatalogue getCourseCatalogue() {
+        return courseCatalogue;
+    }
+
     public boolean isRunning() {
         return isRunning;
     }
@@ -56,7 +60,6 @@ public class StudentManager {
         for (Course c : courses) {
             if (c.getName().equals(chosenCourse)) {
                 managee.getCoursesTaken().add(c);
-//                managee.getTranscript().getCoursesListed();
                 System.out.println("Enter grade received:");
                 int gradeReceived = sc.nextInt();
                 c.setGrade(gradeReceived);
@@ -178,6 +181,29 @@ public class StudentManager {
     private boolean logHonoursStatus(Scanner scanner) {
         System.out.println("\n" + "You are in a honours program (true/false): ");
         return Boolean.parseBoolean(scanner.next());
+    }
+
+    private void printArtsProgress(Faculty faculty) {
+        System.out.println("Arts requirement: " + managee.getTranscript().sumArtsCredits() + "/" + faculty.getArtsCredits() + " credits completed");
+    }
+
+    private void printScienceProgress(Faculty faculty) {
+        System.out.println("Science requirement: " + managee.getTranscript().sumScienceCredits() + "/" + faculty.getScienceCredits() + " credits completed");
+    }
+
+    private void printUpperYearProgress(Faculty faculty) {
+        System.out.println("Upper-level requirement: " + managee.getTranscript().sumUpperYearCredits() + "/" + faculty.getUpperLevelTotalCredits() + " credits completed");
+    }
+
+    private void printUpperYearScienceProgress(Faculty faculty) {
+        System.out.println("Upper-level Science requirement: " + managee.getTranscript().sumUpperYearScienceCredits() + "/" + faculty.getUpperLevelScienceCredits() + " credits completed");
+    }
+
+    public void displayDegreeProgress(Faculty faculty) {
+        printArtsProgress(faculty);
+        printScienceProgress(faculty);
+        printUpperYearProgress(faculty);
+        printUpperYearScienceProgress(faculty);
     }
 }
 

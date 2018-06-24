@@ -33,11 +33,11 @@ public class Faculty {
         return 12;
     }
 
-    public int getThirdYearPlusTotalCredits() {
+    public int getUpperLevelTotalCredits() {
         return 48;
     }
 
-    public int getThirdYearPlusScienceCredits() {
+    public int getUpperLevelScienceCredits() {
         return 30;
     }
 }
