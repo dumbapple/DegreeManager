@@ -14,19 +14,18 @@ public class Main {
         StudentManager manager = user.getStudentManager();
 
 
-        manager.registerStudentInformation(input); // Asking user for profile info
+        manager.registerProfileInformation(input);
 
         while (manager.isRunning()) {
-            manager.showMainMenu();
+            manager.printMainMenu();
             switch (input.next()) {
                 case "1":
-                    manager.showProfileInfo();
+                    manager.printProfile();
                     break;
                 case "2":
                     if (user.getCoursesTaken().isEmpty()) {
                         manager.printEmptyTranscriptMessages();
-                        manager.registerCourseAndGrade(input);
-                        manager.printTranscript();
+                        manager.generateTranscript(input);
                     } else {
                         manager.printTranscript();
                     }

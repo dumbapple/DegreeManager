@@ -42,6 +42,7 @@ public class CourseCatalogue {
         Collections.addAll(biolCourses, biol112, biol121, biol140,
                 biol153, biol155, biol200, biol201, biol203);
     }
+
     public List<Course> getBiologyCourses() {
         return biolCourses;
     }
@@ -60,6 +61,7 @@ public class CourseCatalogue {
         Collections.addAll(chemCourses, chem121, chem123, chem203, chem205,
                 chem208, chem211, chem213, chem233, chem235, chem245);
     }
+
     public List<Course> getChemistryCourses() {
         return chemCourses;
     }
@@ -73,6 +75,7 @@ public class CourseCatalogue {
         Course cpsc221 = new Course("CPSC 221", 4);
         Collections.addAll(cpscCourses, cpsc110, cpsc121, cpsc210, cpsc213, cpsc221);
     }
+
     public List<Course> getComputerScienceCourses() {
         return cpscCourses;
     }
@@ -83,6 +86,7 @@ public class CourseCatalogue {
         Course engl112 = new Course("ENGL 112", 3);
         Collections.addAll(englCourses, engl110, engl111, engl112);
     }
+
     public List<Course> getEnglishCourses() {
         return englCourses;
     }
@@ -101,6 +105,7 @@ public class CourseCatalogue {
         Collections.addAll(mathCourses, math100, math101, math102, math103,
                 math104, math105, math180, math200, math220, math221);
     }
+
     public List<Course> getMathCourses() {
         return mathCourses;
     }
@@ -111,10 +116,12 @@ public class CourseCatalogue {
         Course phys108 = new Course("PHYS 108", 3);
         Course phys109 = new Course("PHYS 109", 3);
         Course phys117 = new Course("PHYS 117", 3);
-        Course phys118 = new Course("PHYS 118", 3);;
+        Course phys118 = new Course("PHYS 118", 3);
+        ;
         Course phys119 = new Course("PHYS 119", 1);
         Collections.addAll(physCourses, phys101, phys107, phys108, phys109, phys117, phys118, phys119);
     }
+
     public List<Course> getPhysicsCourses() {
         return physCourses;
     }
@@ -129,6 +136,7 @@ public class CourseCatalogue {
         Course stat306 = new Course("STAT 306", 3);
         Collections.addAll(statCourses, stat200, stat203, stat251, stat300, stat302, stat305, stat306);
     }
+
     public List<Course> getStatisticsCourses() {
         return statCourses;
     }
