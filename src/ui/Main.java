@@ -35,7 +35,6 @@ public class Main {
                 case "3":
                     if (user.getCoursesTaken().isEmpty()) {
                         manager.redirectUser(input);
-                        System.out.println("\n" + "\n" + "\n" + "You may now view your degree progress.");
                         manager.displayDegreeProgress(scienceFaculty);
                     } else {
                         manager.displayDegreeProgress(scienceFaculty);

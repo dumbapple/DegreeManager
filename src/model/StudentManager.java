@@ -124,7 +124,7 @@ public class StudentManager {
                 " Enter 'add' to log your course information with the system");
         if (input.next().equals("add")) {
             System.out.println("Enter a subject abbreviation to begin adding courses to your transcript");
-            generateTranscript(input);
+            generateTranscriptCaseThree(input);
         }
     }
 
@@ -136,6 +136,19 @@ public class StudentManager {
             System.out.println("Enter a course from this list that you've taken (case-sensitive!)");
             logCourseTaken(courseList, studentInput);
             if (!willAddMoreFromSubject(studentInput)) {
+                canLoopRun = false;
+            }
+        }
+    }
+
+    private void logCourseAndGradeCaseThree(Scanner studentInput, List<Course> courseList) {
+        boolean canLoopRun = true;
+        while (canLoopRun) {
+            studentInput.nextLine();
+            printCourseList(courseList);
+            System.out.println("Enter a course from this list that you've taken (case-sensitive!)");
+            logCourseTaken(courseList, studentInput);
+            if (!willAddMoreFromSubjectCaseThree(studentInput)) {
                 canLoopRun = false;
             }
         }
@@ -205,6 +218,52 @@ public class StudentManager {
         managee.setStudyYear(logStudyYear(studentInput));
         managee.setSpecialization(logSpecialization(studentInput));
         managee.setHonours(logHonoursStatus(studentInput));
+    }
+
+    public void generateTranscriptCaseThree(Scanner studentInput) {
+        switch (studentInput.next()) {
+            case "BIOL":
+                logCourseAndGradeCaseThree(studentInput, courseCatalogue.getBiologyCourses());
+                break;
+            case "CHEM":
+                logCourseAndGradeCaseThree(studentInput, courseCatalogue.getChemistryCourses());
+                break;
+            case "CPSC":
+                logCourseAndGradeCaseThree(studentInput, courseCatalogue.getComputerScienceCourses());
+                break;
+            case "ENGL":
+                logCourseAndGradeCaseThree(studentInput, courseCatalogue.getEnglishCourses());
+                break;
+            case "MATH":
+                logCourseAndGradeCaseThree(studentInput, courseCatalogue.getMathCourses());
+                break;
+            case "PHYS":
+                logCourseAndGradeCaseThree(studentInput, courseCatalogue.getPhysicsCourses());
+                break;
+            case "STAT":
+                logCourseAndGradeCaseThree(studentInput, courseCatalogue.getStatisticsCourses());
+                break;
+        }
+    }
+
+    private boolean willAddMoreFromSubjectCaseThree(Scanner input) {
+        boolean result = false;
+        System.out.println("Add more courses from this subject? ('yes'/'no')");
+        if (input.next().equals("no")) {
+            System.out.println("If you have finished adding your courses, enter 'done'. Otherwise, enter 'more'");
+            switch (input.next()) {
+                case "done":
+                    System.out.println("\n" + "Thanks for taking the time to do this. Your degree progress summary:");
+                    break;
+                case "more":
+                    System.out.println("Enter another subject abbreviation (case-sensitive)");
+                    generateTranscript(input);
+                    break;
+            }
+        } else {
+            result = true;
+        }
+        return result;
     }
 
 }
