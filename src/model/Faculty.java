@@ -25,12 +25,12 @@ public class Faculty {
         return 180;
     }
 
-    public int getScienceCredits() {
-        return 72;
-    }
-
     public int getArtsCredits() {
         return 12;
+    }
+
+    public int getScienceCredits() {
+        return 72;
     }
 
     public int getUpperLevelTotalCredits() {

@@ -69,7 +69,7 @@ public class Transcript {
     public int sumUpperYearScienceCredits() {
         int init = 0;
         for (Course c : associatedStudent.getCoursesTaken()) {
-            if (associatedStudent.getStudentManager().getCourseCatalogue().getUpperYearCourses().contains(c)) {
+            if (associatedStudent.getStudentManager().getCourseCatalogue().getUpperYearScienceCourses().contains(c)) {
                 init += c.getCredit();
             }
         }

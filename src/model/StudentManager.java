@@ -46,15 +46,6 @@ public class StudentManager {
         return courseCatalogue;
     }
 
-    public boolean isRunning() {
-        return isRunning;
-    }
-
-    public void setOver() {
-        System.out.println("Goodbye!");
-        isRunning = false;
-    }
-
     private void logCourseTaken(List<Course> courses, Scanner sc) {
         String chosenCourse = sc.nextLine();
         for (Course c : courses) {
@@ -75,6 +66,12 @@ public class StudentManager {
                 System.out.println(c.getName());
             }
         }
+    }
+
+    public void printGreeting() {
+        System.out.println("WELCOME TO THE UBC DEGREE MANAGER!");
+        System.out.println("==================================");
+        System.out.println("To begin, I'll get you to enter some information about yourself.");
     }
 
     public void printEmptyTranscriptMessages() {

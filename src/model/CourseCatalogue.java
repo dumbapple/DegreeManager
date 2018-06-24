@@ -52,6 +52,9 @@ public class CourseCatalogue {
         }
     }
 
+    public List<Course> getUpperYearScienceCourses() {
+        return upperYearScienceCourses;
+    }
 
     private void groupUpperYearCourses() {
         for (Course c : allCourses) {
@@ -202,11 +205,4 @@ public class CourseCatalogue {
         return statCourses;
     }
 
-    public List<Course> getAllCourses() {
-        return allCourses;
-    }
-
-    public List<Course> getUpperYearScienceCourses() {
-        return upperYearScienceCourses;
-    }
 }
