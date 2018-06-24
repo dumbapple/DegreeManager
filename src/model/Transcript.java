@@ -1,5 +1,6 @@
 package model;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 // represents a transcript for a given student
@@ -21,11 +22,12 @@ public class Transcript {
     }
 
     private double calculateAverage(List<Course> selectedCourses) {
+        DecimalFormat format = new DecimalFormat("#.00");
         double init = 0;
         for (Course course : selectedCourses) {
             init += course.getGrade();
         }
-        return init / selectedCourses.size();
+        return Double.parseDouble(format.format(init / selectedCourses.size()));
     }
 
     public int sumAllCredits(List<Course> courses) {
@@ -36,46 +38,15 @@ public class Transcript {
         return init;
     }
 
-    public int sumArtsCredits() {
+    public int sumConditionalCredits(List<Course> courseList) {
         int init = 0;
         for (Course c : associatedStudent.getCoursesTaken()) {
-            if (associatedStudent.getStudentManager().getCourseCatalogue().getArtsCourses().contains(c)) {
+            if (courseList.contains(c)) {
                 init += c.getCredit();
             }
         }
         return init;
     }
-
-    public int sumScienceCredits() {
-        int init = 0;
-        for (Course c : associatedStudent.getCoursesTaken()) {
-            if (associatedStudent.getStudentManager().getCourseCatalogue().getScienceCourses().contains(c)) {
-                init += c.getCredit();
-            }
-        }
-        return init;
-    }
-
-    public int sumUpperYearCredits() {
-        int init = 0;
-        for (Course c : associatedStudent.getCoursesTaken()) {
-            if (associatedStudent.getStudentManager().getCourseCatalogue().getUpperYearCourses().contains(c)) {
-                init += c.getCredit();
-            }
-        }
-        return init;
-    }
-
-    public int sumUpperYearScienceCredits() {
-        int init = 0;
-        for (Course c : associatedStudent.getCoursesTaken()) {
-            if (associatedStudent.getStudentManager().getCourseCatalogue().getUpperYearScienceCourses().contains(c)) {
-                init += c.getCredit();
-            }
-        }
-        return init;
-    }
-
 
     public void display() {
         System.out.println("\n" + "\n" + "TRANSCRIPT");
@@ -84,7 +55,9 @@ public class Transcript {
             System.out.println("Course: " + c.getName() +
                     "   " + "Grade: " + c.getGrade() + "%" +
                     "   " + "Credit: " + c.getCredit());
+
         }
+
         System.out.println("Your cumulative average: " + calculateAverage(associatedStudent.getCoursesTaken()) + "%");
         System.out.println("Your total credits: " + sumAllCredits(associatedStudent.getCoursesTaken()));
     }

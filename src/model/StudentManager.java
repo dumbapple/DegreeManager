@@ -5,15 +5,17 @@ import java.util.Scanner;
 
 // Manages changes and information output for a given student's studies
 public class StudentManager {
-    private boolean isRunning;
     private Student managee;
     private CourseCatalogue courseCatalogue;
 
 
     StudentManager(Student managee) {
-        isRunning = true;
         this.managee = managee;
         courseCatalogue = new CourseCatalogue();
+    }
+
+    public CourseCatalogue getCourseCatalogue() {
+        return courseCatalogue;
     }
 
     public void generateTranscript(Scanner studentInput) {
@@ -39,22 +41,6 @@ public class StudentManager {
             case "STAT":
                 logCourseAndGrade(studentInput, courseCatalogue.getStatisticsCourses());
                 break;
-        }
-    }
-
-    public CourseCatalogue getCourseCatalogue() {
-        return courseCatalogue;
-    }
-
-    private void logCourseTaken(List<Course> courses, Scanner sc) {
-        String chosenCourse = sc.nextLine();
-        for (Course c : courses) {
-            if (c.getName().equals(chosenCourse)) {
-                managee.getCoursesTaken().add(c);
-                System.out.println("Enter grade received:");
-                int gradeReceived = sc.nextInt();
-                c.setGrade(gradeReceived);
-            }
         }
     }
 
@@ -104,6 +90,35 @@ public class StudentManager {
         System.out.println("Honours: " + managee.isHonours());
     }
 
+    public void displayDegreeProgress(Faculty faculty) {
+        System.out.println("\n" + "\n" + "\n" + "DEGREE PROGRESS");
+        System.out.println("--------------------------------------");
+        printArtsProgress(faculty);
+        printScienceProgress(faculty);
+        printUpperYearProgress(faculty);
+        printUpperYearScienceProgress(faculty);
+    }
+
+    private void printArtsProgress(Faculty faculty) {
+        int creditsEarned = managee.getTranscript().sumConditionalCredits(courseCatalogue.getArtsCourses());
+        System.out.println("Arts requirement: " + creditsEarned + "/" + faculty.getArtsCredits() + " credits completed");
+    }
+
+    private void printScienceProgress(Faculty faculty) {
+        int creditsEarned = managee.getTranscript().sumConditionalCredits(courseCatalogue.getScienceCourses());
+        System.out.println("Science requirement: " + creditsEarned + "/" + faculty.getScienceCredits() + " credits completed");
+    }
+
+    private void printUpperYearProgress(Faculty faculty) {
+        int creditsEarned = managee.getTranscript().sumConditionalCredits(courseCatalogue.getUpperYearCourses());
+        System.out.println("Upper-level requirement: " + creditsEarned + "/" + faculty.getUpperLevelTotalCredits() + " credits completed");
+    }
+
+    private void printUpperYearScienceProgress(Faculty faculty) {
+        int creditsEarned = managee.getTranscript().sumConditionalCredits(courseCatalogue.getUpperYearScienceCourses());
+        System.out.println("Upper-level Science requirement: " + creditsEarned + "/" + faculty.getUpperLevelScienceCredits() + " credits completed");
+    }
+
     public void redirectUser(Scanner input) {
         System.out.println("Looks like we don't have any info about your courses yet." +
                 " Enter 'add' to log your course information with the system");
@@ -124,6 +139,43 @@ public class StudentManager {
                 canLoopRun = false;
             }
         }
+    }
+
+    private void logCourseTaken(List<Course> courses, Scanner sc) {
+        String chosenCourse = sc.nextLine();
+        for (Course c : courses) {
+            if (c.getName().equals(chosenCourse)) {
+                managee.getCoursesTaken().add(c);
+                System.out.println("Enter grade received:");
+                int gradeReceived = sc.nextInt();
+                c.setGrade(gradeReceived);
+            }
+        }
+    }
+
+    private String logName(Scanner scanner) {
+        System.out.println("\n" + "Please enter your first and last name:");
+        return scanner.nextLine();
+    }
+
+    private int logStudentID(Scanner scanner) {
+        System.out.println("\n" + "Please enter your UBC student number:");
+        return Integer.parseInt(scanner.next());
+    }
+
+    private int logStudyYear(Scanner scanner) {
+        System.out.println("\n" + "Please enter your study year:");
+        return Integer.parseInt(scanner.next());
+    }
+
+    private Specialization logSpecialization(Scanner scanner) {
+        System.out.println("\n" + "Please enter your specialization as abbreviated on the SSC (eg. BIOL, CHEM, CPSC):");
+        return new Specialization(scanner.next());
+    }
+
+    private boolean logHonoursStatus(Scanner scanner) {
+        System.out.println("\n" + "You are in a honours program (true/false): ");
+        return Boolean.parseBoolean(scanner.next());
     }
 
     private boolean willAddMoreFromSubject(Scanner input) {
@@ -155,52 +207,5 @@ public class StudentManager {
         managee.setHonours(logHonoursStatus(studentInput));
     }
 
-    private String logName(Scanner scanner) {
-        System.out.println("\n" + "Please enter your first and last name:");
-        return scanner.nextLine();
-    }
-
-    private int logStudentID(Scanner scanner) {
-        System.out.println("\n" + "Please enter your UBC student number:");
-        return Integer.parseInt(scanner.next());
-    }
-
-    private int logStudyYear(Scanner scanner) {
-        System.out.println("\n" + "Please enter your study year:");
-        return Integer.parseInt(scanner.next());
-    }
-
-    private Specialization logSpecialization(Scanner scanner) {
-        System.out.println("\n" + "Please enter your specialization as abbreviated on the SSC (eg. BIOL, CHEM, CPSC):");
-        return new Specialization(scanner.next());
-    }
-
-    private boolean logHonoursStatus(Scanner scanner) {
-        System.out.println("\n" + "You are in a honours program (true/false): ");
-        return Boolean.parseBoolean(scanner.next());
-    }
-
-    private void printArtsProgress(Faculty faculty) {
-        System.out.println("Arts requirement: " + managee.getTranscript().sumArtsCredits() + "/" + faculty.getArtsCredits() + " credits completed");
-    }
-
-    private void printScienceProgress(Faculty faculty) {
-        System.out.println("Science requirement: " + managee.getTranscript().sumScienceCredits() + "/" + faculty.getScienceCredits() + " credits completed");
-    }
-
-    private void printUpperYearProgress(Faculty faculty) {
-        System.out.println("Upper-level requirement: " + managee.getTranscript().sumUpperYearCredits() + "/" + faculty.getUpperLevelTotalCredits() + " credits completed");
-    }
-
-    private void printUpperYearScienceProgress(Faculty faculty) {
-        System.out.println("Upper-level Science requirement: " + managee.getTranscript().sumUpperYearScienceCredits() + "/" + faculty.getUpperLevelScienceCredits() + " credits completed");
-    }
-
-    public void displayDegreeProgress(Faculty faculty) {
-        printArtsProgress(faculty);
-        printScienceProgress(faculty);
-        printUpperYearProgress(faculty);
-        printUpperYearScienceProgress(faculty);
-    }
 }
 

@@ -33,6 +33,7 @@ public class ApplicationState {
     }
 
     public void setOver() {
+        System.out.println("\n" + "\n" + "\n" + "Goodbye!");
         isRunning = false;
     }
 }
