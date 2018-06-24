@@ -44,7 +44,7 @@ public class Student {
         this.studyYear = studyYear;
     }
 
-    public Specialization getSpecialization() {
+    public Specialization getSpec() {
         return specialization;
     }
 

@@ -52,7 +52,7 @@ public class CourseCatalogue {
         }
     }
 
-    public List<Course> getUpperYearScienceCourses() {
+    public List<Course> getUpYrScie() {
         return upperYearScienceCourses;
     }
 
@@ -64,7 +64,7 @@ public class CourseCatalogue {
         }
     }
 
-    public List<Course> getUpperYearCourses() {
+    public List<Course> getUpperYr() {
         return upperYearCourses;
     }
 
@@ -72,7 +72,7 @@ public class CourseCatalogue {
         artsCourses.addAll(englCourses);
     }
 
-    public List<Course> getArtsCourses() {
+    public List<Course> getArts() {
         return artsCourses;
     }
 
@@ -85,7 +85,7 @@ public class CourseCatalogue {
         scienceCourses.addAll(statCourses);
     }
 
-    public List<Course> getScienceCourses() {
+    public List<Course> getScie() {
         return scienceCourses;
     }
 

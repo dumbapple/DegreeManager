@@ -8,36 +8,35 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         ApplicationState thisProgram = new ApplicationState();
-
-        Scanner input = thisProgram.getInput();
-        Faculty scienceFaculty = thisProgram.getFaculty();
+        Scanner userInput = thisProgram.getInput();
+        Faculty facultyOfScience = thisProgram.getFaculty();
         Student user = thisProgram.getStudent();
         StudentManager manager = user.getStudentManager();
         Transcript userTranscript = new Transcript(user);
         user.setTranscript(userTranscript);
-        manager.printGreeting();
-        manager.registerProfileInformation(input);
+        manager.printGreetingMessage();
+        manager.logProfileInformation(userInput);
 
         while (thisProgram.isRunning()) {
             manager.printMainMenu();
-            switch (input.next()) {
+            switch (userInput.next()) {
                 case "1":
                     manager.printProfile();
                     break;
                 case "2":
                     if (user.getCoursesTaken().isEmpty()) {
-                        manager.printEmptyTranscriptMessages();
-                        manager.generateTranscript(input);
+                        manager.printNoCoursesTakenMessage();
+                        manager.generateTranscript(userInput);
                     } else {
                         userTranscript.display();
                     }
                     break;
                 case "3":
                     if (user.getCoursesTaken().isEmpty()) {
-                        manager.redirectUser(input);
-                        manager.displayDegreeProgress(scienceFaculty);
+                        manager.redirectUser(userInput);
+                        manager.printDegreeProgress(facultyOfScience);
                     } else {
-                        manager.displayDegreeProgress(scienceFaculty);
+                        manager.printDegreeProgress(facultyOfScience);
                     }
                     break;
                 case "quit":
@@ -45,7 +44,7 @@ public class Main {
                     System.exit(0);
             }
             manager.printMenuOptions();
-            switch (input.next()) {
+            switch (userInput.next()) {
                 case "main":
                     continue;
                 case "quit":

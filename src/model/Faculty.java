@@ -16,19 +16,19 @@ public class Faculty {
         return 180;
     }
 
-    public int getArtsCredits() {
+    public int getArtsCred() {
         return 12;
     }
 
-    public int getScienceCredits() {
+    public int getScienceCred() {
         return 72;
     }
 
-    public int getUpperLevelTotalCredits() {
+    public int getUpYrCred() {
         return 48;
     }
 
-    public int getUpperLevelScienceCredits() {
+    public int getUpYrScienceCred() {
         return 30;
     }
 }

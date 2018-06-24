@@ -38,7 +38,7 @@ public class Transcript {
         return init;
     }
 
-    public int sumConditionalCredits(List<Course> courseList) {
+    public int sumCondCredits(List<Course> courseList) {
         int init = 0;
         for (Course c : associatedStudent.getCoursesTaken()) {
             if (courseList.contains(c)) {
@@ -49,6 +49,7 @@ public class Transcript {
     }
 
     public void display() {
+        System.out.println("\n" + "Thanks for your help. Here is your transcript:");
         System.out.println("\n" + "\n" + "TRANSCRIPT");
         System.out.println("--------------------------------------");
         for (Course c : associatedStudent.getCoursesTaken()) {
