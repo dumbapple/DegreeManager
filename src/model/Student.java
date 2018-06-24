@@ -17,6 +17,7 @@ public class Student {
     public Student() {
         coursesTaken = new ArrayList<>();
         studentManager = new StudentManager(this);
+        transcript = null;
     }
 
     public String getName() {

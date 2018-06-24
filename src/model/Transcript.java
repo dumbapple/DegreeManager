@@ -20,7 +20,7 @@ public class Transcript {
         return coursesListed;
     }
 
-    public double calculateAverage(List<Course> selectedCourses) {
+    private double calculateAverage(List<Course> selectedCourses) {
         double init = 0;
         for (Course course : selectedCourses) {
             init += course.getGrade();
@@ -28,9 +28,23 @@ public class Transcript {
         return init / selectedCourses.size();
     }
 
-    public void showCoursesTaken() {
-        for (Course course : associatedStudent.getCoursesTaken()) {
-            System.out.println("Course: " + course.getName() + " " + "Grade: " + course.getGrade() + " " + "Credit: " + course.getCredit());
+    private int sumCredits(List<Course> courses) {
+        int init = 0;
+        for (Course course : courses) {
+            init = init + course.getCredit();
         }
+        return init;
+    }
+
+    public void display() {
+        System.out.println("\n" + "\n" + "TRANSCRIPT");
+        System.out.println("--------------------------------------");
+        for (Course c : associatedStudent.getCoursesTaken()) {
+            System.out.println("Course: " + c.getName() +
+                    "   " + "Grade: " + c.getGrade() + "%" +
+                    "   " + "Credit: " + c.getCredit());
+        }
+        System.out.println("Your cumulative average: " + calculateAverage(associatedStudent.getCoursesTaken()) + "%");
+        System.out.println("Your total credits: " + sumCredits(associatedStudent.getCoursesTaken()));
     }
 }

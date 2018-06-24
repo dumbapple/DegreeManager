@@ -42,7 +42,6 @@ public class StudentManager {
         }
     }
 
-    // getters and setters
     public boolean isRunning() {
         return isRunning;
     }
@@ -52,12 +51,12 @@ public class StudentManager {
         isRunning = false;
     }
 
-    // printing to the console
-    private void printCourseInfo(List<Course> courses, Scanner sc) {
+    private void logCourseTaken(List<Course> courses, Scanner sc) {
         String chosenCourse = sc.nextLine();
         for (Course c : courses) {
             if (c.getName().equals(chosenCourse)) {
                 managee.getCoursesTaken().add(c);
+//                managee.getTranscript().getCoursesListed();
                 System.out.println("Enter grade received:");
                 int gradeReceived = sc.nextInt();
                 c.setGrade(gradeReceived);
@@ -66,6 +65,8 @@ public class StudentManager {
     }
 
     private void printCourseList(List<Course> coursesToDisplay) {
+        System.out.println("\n" + "\n" + "\n" + "COURSE LIST");
+        System.out.println("--------------------------------------");
         for (Course c : coursesToDisplay) {
             if (!managee.getCoursesTaken().contains(c)) {
                 System.out.println(c.getName());
@@ -74,17 +75,19 @@ public class StudentManager {
     }
 
     public void printEmptyTranscriptMessages() {
-        System.out.println("Oh no! Can't show transcript due to lack of info about your courses!");
-        System.out.println("Unfortunately, you must first log the courses you've taken from our course lists");
-        System.out.println("View a subject course list by entering its abbreviation (case-sensitive, eg. CHEM, BIOL, CPSC)");
+        System.out.println("\n" + "\n" + "\n" + "Oh no! It looks like we have no information about your course history!");
+        System.out.println("You'll have to browse and add the ones you've taken into our system.");
+        System.out.println("View a subject's courses by entering its abbreviation below (case-sensitive, eg. CHEM, BIOL, CPSC).");
     }
 
-    public void printMenuSwitchOptions() {
-        System.out.println("Enter 'main' to return to the main menu");
+    public void printMenuOptions() {
+        System.out.println("\n" + "Enter 'main' to return to the main menu");
         System.out.println("Enter 'quit' to exit the application");
     }
 
     public void printMainMenu() {
+        System.out.println("\n" + "\n" + "\n" + "MAIN MENU");
+        System.out.println("--------------------------------------");
         System.out.println("Enter '1' to see your personal profile");
         System.out.println("Enter '2' to view your transcript");
         System.out.println("Enter '3' to view your overall degree progress");
@@ -92,6 +95,8 @@ public class StudentManager {
     }
 
     public void printProfile() {
+        System.out.println("\n" + "\n" + "\n" + "PROFILE");
+        System.out.println("--------------------------------------");
         System.out.println("Name: " + managee.getName());
         System.out.println("UBC ID: " + managee.getID());
         System.out.println("Year level: " + managee.getStudyYear());
@@ -99,22 +104,22 @@ public class StudentManager {
         System.out.println("Honours: " + managee.isHonours());
     }
 
-    public void printTranscript() {
-        for (Course c : managee.getCoursesTaken()) {
-            System.out.println("Course: " + c.getName() +
-                    "   " + "Grade: " + c.getGrade() + "%" +
-                    "   " + "Credit: " + c.getCredit());
+    public void redirectUser(Scanner input) {
+        System.out.println("Looks like we don't have any info about your courses yet." +
+                " Enter 'add' to log your course information with the system");
+        if (input.next().equals("add")) {
+            System.out.println("Enter a subject abbreviation to begin adding courses to your transcript");
+            generateTranscript(input);
         }
     }
 
-    // handling user input for student profile
     private void logCourseAndGrade(Scanner studentInput, List<Course> courseList) {
         boolean canLoopRun = true;
         while (canLoopRun) {
             studentInput.nextLine();
             printCourseList(courseList);
             System.out.println("Enter a course from this list that you've taken (case-sensitive!)");
-            printCourseInfo(courseList, studentInput);
+            logCourseTaken(courseList, studentInput);
             if (!willAddMoreFromSubject(studentInput)) {
                 canLoopRun = false;
             }
@@ -128,8 +133,8 @@ public class StudentManager {
             System.out.println("If you have finished adding your courses, enter 'done'. Otherwise, enter 'more'");
             switch (input.next()) {
                 case "done":
-                    System.out.println("Thanks for taking the time to do this. Here is your transcript:");
-                    printTranscript();
+                    System.out.println("\n" + "Thanks for taking the time to do this. Here is your transcript:");
+                    managee.getTranscript().display();
                     break;
                 case "more":
                     System.out.println("Enter another subject abbreviation (case-sensitive)");
@@ -151,27 +156,27 @@ public class StudentManager {
     }
 
     private String logName(Scanner scanner) {
-        System.out.println("Please enter your first and last name:");
+        System.out.println("\n" + "Please enter your first and last name:");
         return scanner.nextLine();
     }
 
     private int logStudentID(Scanner scanner) {
-        System.out.println("Please enter your UBC student number:");
+        System.out.println("\n" + "Please enter your UBC student number:");
         return Integer.parseInt(scanner.next());
     }
 
     private int logStudyYear(Scanner scanner) {
-        System.out.println("Please enter your study year:");
+        System.out.println("\n" + "Please enter your study year:");
         return Integer.parseInt(scanner.next());
     }
 
     private Specialization logSpecialization(Scanner scanner) {
-        System.out.println("Please enter your specialization as abbreviated on the SSC (eg. BIOL, CHEM, CPSC):");
+        System.out.println("\n" + "Please enter your specialization as abbreviated on the SSC (eg. BIOL, CHEM, CPSC):");
         return new Specialization(scanner.next());
     }
 
     private boolean logHonoursStatus(Scanner scanner) {
-        System.out.println("You are in a honours program (true/false): ");
+        System.out.println("\n" + "You are in a honours program (true/false): ");
         return Boolean.parseBoolean(scanner.next());
     }
 }

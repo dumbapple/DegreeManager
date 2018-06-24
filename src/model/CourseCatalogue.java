@@ -67,7 +67,6 @@ public class CourseCatalogue {
     }
 
     private void makeComputerScienceCourses() {
-        Course cpsc103 = new Course("CPSC 103", 3);
         Course cpsc110 = new Course("CPSC 110", 4);
         Course cpsc121 = new Course("CPSC 121", 4);
         Course cpsc210 = new Course("CPSC 210", 4);
@@ -117,7 +116,6 @@ public class CourseCatalogue {
         Course phys109 = new Course("PHYS 109", 3);
         Course phys117 = new Course("PHYS 117", 3);
         Course phys118 = new Course("PHYS 118", 3);
-        ;
         Course phys119 = new Course("PHYS 119", 1);
         Collections.addAll(physCourses, phys101, phys107, phys108, phys109, phys117, phys118, phys119);
     }
