@@ -8,7 +8,7 @@ public class Student {
     private String name;
     private int schoolID;
     private int studyYear;
-    private Specialization specialization;
+    private String specialization;
     private boolean isHonours;
     private StudentManager studentManager;
     private List<Course> coursesTaken;
@@ -44,11 +44,15 @@ public class Student {
         this.studyYear = studyYear;
     }
 
-    public Specialization getSpec() {
+    public void setSpec(String name) {
+        specialization = name;
+    }
+
+    public String getSpec() {
         return specialization;
     }
 
-    public void setSpecialization(Specialization specialization) {
+    public void setSpecialization(String specialization) {
         this.specialization = specialization;
     }
 

@@ -9,10 +9,12 @@ public class Main {
     public static void main(String[] args) {
         ApplicationState thisProgram = new ApplicationState();
         Scanner userInput = thisProgram.getInput();
+
         Faculty facultyOfScience = thisProgram.getFaculty();
         Student user = thisProgram.getStudent();
         StudentManager manager = user.getStudentManager();
         Transcript userTranscript = new Transcript(user);
+
         user.setTranscript(userTranscript);
         manager.printGreetingMessage();
         manager.logProfileInformation(userInput);
@@ -22,6 +24,15 @@ public class Main {
             switch (userInput.next()) {
                 case "1":
                     manager.printProfile();
+                    System.out.println("\n" + "Change specialization? ('yes'/'no')");
+
+                    if (userInput.next().equals("yes")) {
+                        userInput.nextLine();
+                        System.out.println("Enter your new specialization's abbreviation code");
+                        user.setSpec(userInput.next());
+                    } else {
+                        break;
+                    }
                     break;
                 case "2":
                     if (user.getCoursesTaken().isEmpty()) {
@@ -29,6 +40,19 @@ public class Main {
                         manager.generateTranscript(userInput);
                     } else {
                         userTranscript.display();
+                    }
+
+
+                    manager.printMenuOptionsCaseTwo();
+                    switch (userInput.next()) {
+                        case "more":
+                            System.out.println("Enter a subject code (eg. CHEM).");
+                            manager.generateTranscript(userInput);
+                        case "main":
+                            continue;
+                        case "quit":
+                            thisProgram.setOver();
+                            break;
                     }
                     break;
                 case "3":
@@ -43,7 +67,7 @@ public class Main {
                     thisProgram.setOver();
                     System.exit(0);
             }
-            manager.printMenuOptions();
+            manager.printMenuOptionsGeneral();
             switch (userInput.next()) {
                 case "main":
                     continue;
@@ -53,4 +77,5 @@ public class Main {
             }
         }
     }
+
 }

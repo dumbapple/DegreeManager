@@ -13,6 +13,14 @@ public class StudentManager {
         courseList = new CourseCatalogue();
     }
 
+    public void addAdditionalCourses(Scanner sc) {
+        boolean result = true;
+        while (result) {
+            generateTranscript(sc);
+
+        }
+    }
+
     private boolean isUserAddingMore(Scanner input) {
         boolean result = true;
         System.out.println("Add more courses from this subject? ('yes'/'no')");
@@ -134,6 +142,10 @@ public class StudentManager {
         printScienceProgress(faculty);
         printUpperYearProgress(faculty);
         printUpperYearScienceProgress(faculty);
+        int max = faculty.getMaxCreditsAllowed();
+        int current = student.getTranscript().sumAllCredits(student.getCoursesTaken());
+        int remaining = max - current;
+        System.out.println("You must complete your studies within " + remaining + " credit attempts.");
     }
 
     public void printGreetingMessage() {
@@ -151,8 +163,14 @@ public class StudentManager {
         System.out.println("Enter 'quit' to exit the application");
     }
 
-    public void printMenuOptions() {
+    public void printMenuOptionsGeneral() {
         System.out.println("\n" + "Enter 'main' to return to the main menu");
+        System.out.println("Enter 'quit' to exit the application");
+    }
+
+    public void printMenuOptionsCaseTwo() {
+        System.out.println("\n" + "Enter 'more' to register more courses");
+        System.out.println("Enter 'main' to return to the main menu");
         System.out.println("Enter 'quit' to exit the application");
     }
 
@@ -170,7 +188,7 @@ public class StudentManager {
         System.out.println("Name: " + student.getName());
         System.out.println("UBC ID: " + student.getID());
         System.out.println("Year level: " + student.getStudyYear());
-        System.out.println("Specialization: " + student.getSpec().getName());
+        System.out.println("Specialization: " + student.getSpec());
         System.out.println("Honours: " + student.isHonours());
     }
 
@@ -247,10 +265,10 @@ public class StudentManager {
         student.setHonours(logHonoursStatus(studentInput));
     }
 
-    private Specialization logSpecialization(Scanner scanner) {
+    private String logSpecialization(Scanner scanner) {
         System.out.println("\n");
         System.out.println("Enter your major as abbreviated on the SSC (eg. CHEM):");
-        return new Specialization(scanner.next());
+        return scanner.next();
     }
 
     private int logStudentID(Scanner scanner) {
