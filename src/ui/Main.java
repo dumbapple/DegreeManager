@@ -8,23 +8,42 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         ApplicationState thisProgram = new ApplicationState();
+
         Scanner userInput = thisProgram.getInput();
 
         Faculty facultyOfScience = thisProgram.getFaculty();
+
         Student user = thisProgram.getStudent();
+
         StudentManager manager = user.getStudentManager();
+
         Transcript userTranscript = new Transcript(user);
 
         user.setTranscript(userTranscript);
+
         manager.printGreetingMessage();
+
         manager.logProfileInformation(userInput);
 
         while (thisProgram.isRunning()) {
             manager.printMainMenu();
-            switch (userInput.next()) {
+            switch (userInput.nextLine()) {
                 case "1":
                     manager.printProfile();
-                    manager.handleSpecializationChange(userInput);
+                    manager.printMenuOptionsCaseOne();
+
+                    switch (userInput.nextLine()) {
+                        case "change":
+                            manager.handleSpecializationChange(userInput);
+                            break;
+                        case "main":
+                            continue;
+                        case "quit":
+                            thisProgram.setOver();
+                            break;
+                    }
+
+
                     break;
                 case "2":
                     if (user.getCoursesTaken().isEmpty()) {
@@ -33,10 +52,8 @@ public class Main {
                     } else {
                         userTranscript.display();
                     }
-
-
                     manager.printMenuOptionsCaseTwo();
-                    switch (userInput.next()) {
+                    switch (userInput.nextLine()) {
                         case "more":
                             System.out.println("Enter a subject code (eg. CHEM).");
                             manager.generateTranscript(userInput);
@@ -59,15 +76,14 @@ public class Main {
                     thisProgram.setOver();
                     System.exit(0);
             }
-            manager.printMenuOptionsGeneral();
-            switch (userInput.next()) {
-                case "main":
-                    continue;
-                case "quit":
-                    thisProgram.setOver();
-                    break;
-            }
+//            manager.printMenuOptionsGeneral();
+//            switch (userInput.next()) {
+//                case "main":
+//                    continue;
+//                case "quit":
+//                    thisProgram.setOver();
+//                    break;
+//            }
         }
     }
-
 }

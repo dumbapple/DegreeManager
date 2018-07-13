@@ -13,24 +13,20 @@ public class StudentManager {
         courseList = new CourseCatalogue();
     }
 
-public void handleSpecializationChange(Scanner sc) {
-
-    System.out.println("\n" + "Change specialization? ('yes'/'no')");
-    if (sc.next().equals("yes")) {
-        sc.nextLine();
+    public void handleSpecializationChange(Scanner sc) {
         System.out.println("Enter your new specialization's abbreviation code");
-        student.setSpec(sc.next());
+        student.setSpec(sc.nextLine());
         System.out.println("Your specialization has been updated.");
     }
-}
+
     private boolean isUserAddingMore(Scanner input) {
         boolean result = true;
         System.out.println("Add more courses from this subject? ('yes'/'no')");
-        if (input.next().equals("no")) {
+        if (input.nextLine().equals("no")) {
             result = false;
             System.out.println("If you are done adding courses, enter 'done'.");
             System.out.println("Otherwise, enter 'more'.");
-            switch (input.next()) {
+            switch (input.nextLine()) {
                 case "done":
                     student.getTranscript().display();
                     break;
@@ -64,7 +60,7 @@ public void handleSpecializationChange(Scanner sc) {
     }
 
     public void generateTranscript(Scanner studentInput) {
-        switch (studentInput.next()) {
+        switch (studentInput.nextLine()) {
             case "BIOL":
                 logCourseAndGrade(studentInput, courseList.getBiologyCourses());
                 break;
@@ -90,7 +86,7 @@ public void handleSpecializationChange(Scanner sc) {
     }
 
     private void generateTranscriptCaseThree(Scanner studentInput) {
-        switch (studentInput.next()) {
+        switch (studentInput.nextLine()) {
             case "BIOL":
                 logCourseAndGradeCaseThree(studentInput, courseList.getBiologyCourses());
                 break;
@@ -170,6 +166,12 @@ public void handleSpecializationChange(Scanner sc) {
         System.out.println("Enter 'quit' to exit the application");
     }
 
+    public void printMenuOptionsCaseOne() {
+        System.out.println("\n" + "Enter 'change' to switch your specialization");
+        System.out.println("Enter 'main' to return to the main menu");
+        System.out.println("Enter 'quit' to exit the application");
+    }
+
     public void printMenuOptionsCaseTwo() {
         System.out.println("\n" + "Enter 'more' to register more courses");
         System.out.println("Enter 'main' to return to the main menu");
@@ -212,7 +214,6 @@ public void handleSpecializationChange(Scanner sc) {
     private void logCourseAndGrade(Scanner studentInput, List<Course> courseList) {
         boolean canLoopRun = true;
         while (canLoopRun) {
-            studentInput.nextLine();
             printCourseList(courseList);
             System.out.println("Enter a course you've taken (case-sensitive!)");
             extractCourseDetails(courseList, studentInput);
@@ -225,7 +226,6 @@ public void handleSpecializationChange(Scanner sc) {
     private void logCourseAndGradeCaseThree(Scanner studentInput, List<Course> courseList) {
         boolean canLoopRun = true;
         while (canLoopRun) {
-            studentInput.nextLine();
             printCourseList(courseList);
             System.out.println("Enter a course from this list that you've taken (case-sensitive!)");
             extractCourseDetails(courseList, studentInput);
@@ -241,7 +241,7 @@ public void handleSpecializationChange(Scanner sc) {
             if (c.getName().equals(chosenCourse)) {
                 student.getCoursesTaken().add(c);
                 System.out.println("Enter grade received:");
-                int gradeReceived = sc.nextInt();
+                int gradeReceived = Integer.parseInt(sc.nextLine());
                 c.setGrade(gradeReceived);
             }
         }
@@ -250,7 +250,7 @@ public void handleSpecializationChange(Scanner sc) {
     private boolean logHonoursStatus(Scanner scanner) {
         System.out.println("\n");
         System.out.println("You are in honours (true/false):");
-        return Boolean.parseBoolean(scanner.next());
+        return Boolean.parseBoolean(scanner.nextLine());
     }
 
     private String logName(Scanner scanner) {
@@ -270,19 +270,19 @@ public void handleSpecializationChange(Scanner sc) {
     private String logSpecialization(Scanner scanner) {
         System.out.println("\n");
         System.out.println("Enter your major as abbreviated on the SSC (eg. CHEM):");
-        return scanner.next();
+        return scanner.nextLine();
     }
 
     private int logStudentID(Scanner scanner) {
         System.out.println("\n");
         System.out.println("Enter your UBC student number:");
-        return Integer.parseInt(scanner.next());
+        return Integer.parseInt(scanner.nextLine());
     }
 
     private int logStudyYear(Scanner scanner) {
         System.out.println("\n");
         System.out.println("Enter your study year:");
-        return Integer.parseInt(scanner.next());
+        return Integer.parseInt(scanner.nextLine());
     }
 }
 
