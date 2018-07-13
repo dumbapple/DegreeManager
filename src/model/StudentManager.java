@@ -42,11 +42,11 @@ public class StudentManager {
     private boolean isUserAddingMoreCaseThree(Scanner input) {
         boolean result = true;
         System.out.println("Add more courses from this subject? ('yes'/'no')");
-        if (input.next().equals("no")) {
+        if (input.nextLine().equals("no")) {
             result = false;
             System.out.println("If you are done courses, enter 'done'.");
             System.out.println("Otherwise, enter 'more'.");
-            switch (input.next()) {
+            switch (input.nextLine()) {
                 case "done":
                     System.out.println("\n" + "Thanks for your help. Your degree progress:");
                     break;
@@ -118,7 +118,7 @@ public class StudentManager {
 
     private void printArtsProgress(Faculty faculty) {
         int credits = student.getTranscript().sumCondCredits(courseList.getArts());
-        System.out.println("ARTS: " + credits + "/" + faculty.getArtsCred());
+        System.out.println("Arts: " + credits + "/" + faculty.getArtsCred());
     }
 
     private void printCourseList(List<Course> coursesToDisplay) {
@@ -152,8 +152,7 @@ public class StudentManager {
     }
 
     public void printMainMenu() {
-        System.out.println("\n" + "\n" + "\n");
-        System.out.println("MAIN MENU");
+        System.out.println("\n" + "MAIN MENU");
         System.out.println("--------------------------------------");
         System.out.println("Enter '1' to see your personal profile");
         System.out.println("Enter '2' to view your transcript");
@@ -161,13 +160,8 @@ public class StudentManager {
         System.out.println("Enter 'quit' to exit the application");
     }
 
-    public void printMenuOptionsGeneral() {
-        System.out.println("\n" + "Enter 'main' to return to the main menu");
-        System.out.println("Enter 'quit' to exit the application");
-    }
-
     public void printMenuOptionsCaseOne() {
-        System.out.println("\n" + "Enter 'change' to switch your specialization");
+        System.out.println("\n" + "\n" + "Enter 'change' to switch your specialization");
         System.out.println("Enter 'main' to return to the main menu");
         System.out.println("Enter 'quit' to exit the application");
     }
@@ -198,17 +192,17 @@ public class StudentManager {
 
     private void printScienceProgress(Faculty faculty) {
         int credits = student.getTranscript().sumCondCredits(courseList.getScie());
-        System.out.println("SCIE: " + credits + "/" + faculty.getScienceCred());
+        System.out.println("Science: " + credits + "/" + faculty.getScienceCred());
     }
 
     private void printUpperYearProgress(Faculty faculty) {
         int credits = student.getTranscript().sumCondCredits(courseList.getUpperYr());
-        System.out.println("Upper-yr: " + credits + "/" + faculty.getUpYrCred());
+        System.out.println("Upper-Year: " + credits + "/" + faculty.getUpYrCred());
     }
 
     private void printUpperYearScienceProgress(Faculty faculty) {
         int credits = student.getTranscript().sumCondCredits(courseList.getUpYrScie());
-        System.out.println("Upper-yr SCIE: " + credits + "/" + faculty.getUpYrScienceCred());
+        System.out.println("Upper-Year Science: " + credits + "/" + faculty.getUpYrScienceCred());
     }
 
     private void logCourseAndGrade(Scanner studentInput, List<Course> courseList) {
