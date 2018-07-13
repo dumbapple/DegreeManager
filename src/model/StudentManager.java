@@ -13,14 +13,16 @@ public class StudentManager {
         courseList = new CourseCatalogue();
     }
 
-    public void addAdditionalCourses(Scanner sc) {
-        boolean result = true;
-        while (result) {
-            generateTranscript(sc);
+public void handleSpecializationChange(Scanner sc) {
 
-        }
+    System.out.println("\n" + "Change specialization? ('yes'/'no')");
+    if (sc.next().equals("yes")) {
+        sc.nextLine();
+        System.out.println("Enter your new specialization's abbreviation code");
+        student.setSpec(sc.next());
+        System.out.println("Your specialization has been updated.");
     }
-
+}
     private boolean isUserAddingMore(Scanner input) {
         boolean result = true;
         System.out.println("Add more courses from this subject? ('yes'/'no')");

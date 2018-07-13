@@ -24,15 +24,7 @@ public class Main {
             switch (userInput.next()) {
                 case "1":
                     manager.printProfile();
-                    System.out.println("\n" + "Change specialization? ('yes'/'no')");
-
-                    if (userInput.next().equals("yes")) {
-                        userInput.nextLine();
-                        System.out.println("Enter your new specialization's abbreviation code");
-                        user.setSpec(userInput.next());
-                    } else {
-                        break;
-                    }
+                    manager.handleSpecializationChange(userInput);
                     break;
                 case "2":
                     if (user.getCoursesTaken().isEmpty()) {
