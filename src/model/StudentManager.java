@@ -116,9 +116,48 @@ public class StudentManager {
         generateTranscriptCaseThree(input);
     }
 
-    private void printArtsProgress(Faculty faculty) {
-        int credits = student.getTranscript().sumCondCredits(courseList.getArts());
-        System.out.println("Arts: " + credits + "/" + faculty.getArtsCred());
+    public void printGreetingMessage() {
+        System.out.println("WELCOME TO THE UBC DEGREE MANAGER!");
+        System.out.println("==================================");
+    }
+
+    public void printMainMenu() {
+        System.out.println("\n" + "\n" + "\n" + "MAIN MENU");
+        System.out.println("--------------------------------------");
+        System.out.println("Enter '1' to see your personal profile");
+        System.out.println("Enter '2' to see your course information");
+        System.out.println("Enter '3' to see your overall degree progress");
+        System.out.println("Enter 'quit' to exit the application");
+    }
+
+    public void printProfile() {
+        System.out.println("\n" + "\n" + "\n");
+        System.out.println("PROFILE");
+        System.out.println("--------------------------------------");
+        System.out.println("Name: " + student.getName());
+        System.out.println("UBC ID: " + student.getID());
+        System.out.println("Year level: " + student.getStudyYear());
+        System.out.println("Specialization: " + student.getSpec());
+        System.out.println("Honours: " + student.isHonours());
+    }
+
+    public void printMenuOptionsCaseOne() {
+        System.out.println("\n" + "\n" + "Enter 'change' to switch your specialization");
+        System.out.println("Enter 'main' to return to the main menu");
+        System.out.println("Enter 'quit' to exit the application");
+    }
+
+    public void printMenuOptionsCaseTwo() {
+        System.out.println("\n" + "Enter 'more' to register more courses");
+        System.out.println("Enter 'main' to return to the main menu");
+        System.out.println("Enter 'quit' to exit the application");
+    }
+
+    public void printNoCoursesTakenMessage() {
+        System.out.println("\n" + "\n" + "\n");
+        System.out.println("Oh rats! We have no info regarding your courses!");
+        System.out.println("You must browse and add courses you've taken.");
+        System.out.println("Enter a subject code (eg. CHEM, BIOL, CPSC).");
     }
 
     private void printCourseList(List<Course> coursesToDisplay) {
@@ -146,48 +185,9 @@ public class StudentManager {
         System.out.println("You must complete your studies within " + remaining + " credit attempts.");
     }
 
-    public void printGreetingMessage() {
-        System.out.println("WELCOME TO THE UBC DEGREE MANAGER!");
-        System.out.println("==================================");
-    }
-
-    public void printMainMenu() {
-        System.out.println("\n" + "MAIN MENU");
-        System.out.println("--------------------------------------");
-        System.out.println("Enter '1' to see your personal profile");
-        System.out.println("Enter '2' to view your transcript");
-        System.out.println("Enter '3' to track your degree progress");
-        System.out.println("Enter 'quit' to exit the application");
-    }
-
-    public void printMenuOptionsCaseOne() {
-        System.out.println("\n" + "\n" + "Enter 'change' to switch your specialization");
-        System.out.println("Enter 'main' to return to the main menu");
-        System.out.println("Enter 'quit' to exit the application");
-    }
-
-    public void printMenuOptionsCaseTwo() {
-        System.out.println("\n" + "Enter 'more' to register more courses");
-        System.out.println("Enter 'main' to return to the main menu");
-        System.out.println("Enter 'quit' to exit the application");
-    }
-
-    public void printNoCoursesTakenMessage() {
-        System.out.println("\n" + "\n" + "\n");
-        System.out.println("Oh rats! We have no info regarding your courses!");
-        System.out.println("You must browse and add courses you've taken.");
-        System.out.println("Enter a subject code (eg. CHEM, BIOL, CPSC).");
-    }
-
-    public void printProfile() {
-        System.out.println("\n" + "\n" + "\n");
-        System.out.println("PROFILE");
-        System.out.println("--------------------------------------");
-        System.out.println("Name: " + student.getName());
-        System.out.println("UBC ID: " + student.getID());
-        System.out.println("Year level: " + student.getStudyYear());
-        System.out.println("Specialization: " + student.getSpec());
-        System.out.println("Honours: " + student.isHonours());
+    private void printArtsProgress(Faculty faculty) {
+        int credits = student.getTranscript().sumArtsCredits(courseList.getArts());
+        System.out.println("Arts: " + credits + "/" + faculty.getArtsCred());
     }
 
     private void printScienceProgress(Faculty faculty) {

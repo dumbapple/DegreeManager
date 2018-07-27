@@ -48,8 +48,18 @@ public class Transcript {
         return init;
     }
 
+    public int sumArtsCredits(List<Course> courseList) {
+        int init = 0;
+        for (Course c : associatedStudent.getCoursesTaken()) {
+            if (!(c.getName().equals("ENGL 110") || c.getName().equals("ENGL 112")) && courseList.contains(c)) {
+                init += c.getCredit();
+            }
+        }
+        return init;
+    }
+
     public void display() {
-        System.out.println("\n" + "Thanks for your help. Here is your transcript:");
+        System.out.println("\n" + "Here is your transcript:");
         System.out.println("\n" + "\n" + "TRANSCRIPT");
         System.out.println("--------------------------------------");
         for (Course c : associatedStudent.getCoursesTaken()) {

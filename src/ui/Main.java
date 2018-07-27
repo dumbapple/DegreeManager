@@ -23,7 +23,6 @@ public class Main {
         // Main program loop
         while (thisProgram.isRunning()) {
             manager.printMainMenu();
-
             // Reading menu selection
             switch (userInput.nextLine()) {
                 // Case where user accesses their profile
@@ -53,7 +52,7 @@ public class Main {
                     manager.printMenuOptionsCaseTwo();
                     switch (userInput.nextLine()) {
                         case "more":
-                            System.out.println("Enter a subject code (eg. CHEM).");
+                            System.out.println("Enter a subject code (eg. CHEM, BIOL, CPSC).");
                             manager.generateTranscript(userInput);
                         case "main":
                             continue;
@@ -65,6 +64,7 @@ public class Main {
                 // Case where user accesses their degree progress
                 case "3":
                     if (user.getCoursesTaken().isEmpty()) {
+                        // Send user to add courses first
                         manager.redirectUser(userInput);
                         manager.printDegreeProgress(facultyOfScience);
                     } else {
@@ -75,14 +75,6 @@ public class Main {
                     thisProgram.setOver();
                     System.exit(0);
             }
-//            manager.printMenuOptionsGeneral();
-//            switch (userInput.next()) {
-//                case "main":
-//                    continue;
-//                case "quit":
-//                    thisProgram.setOver();
-//                    break;
-//            }
         }
     }
 }
